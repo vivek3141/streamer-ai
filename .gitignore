@@ -1,3 +1,4 @@
 .idea/
 access_token
 socket_token
+venv/
