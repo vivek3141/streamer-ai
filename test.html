@@ -1,9 +1,7 @@
 <html>
 <body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js' type='text/javascript'></script>
-<script type='text/javascript'>
-    const socketToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IjlBOTk4QUUwMUQyNTA1NzkyOUE4IiwicmVhZF9vbmx5Ijp0cnVlLCJwcmV2ZW50X21hc3RlciI6dHJ1ZSwidHdpdGNoX2lkIjoiMTU0ODE4NTE2In0.jttQt5Okm0ru4v9e60jzeLXwzU_IMcap1uvWz_VlvnU'; //Socket token from /socket/token end point
-    console.log("hi");
+<script type='text/javascript'>    const socketToken = '';
     //Connect to socket
     const streamlabs = io(`https://sockets.streamlabs.com?token=${socketToken}`, {transports: ['websocket']});
     //Perform Action on event
