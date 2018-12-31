@@ -1,37 +1,21 @@
-import requests
-import socketio
-
-socket_token = open("socket_token").read()
-access_token = open("access_token").read()
-
-params = {
-    "token": socket_token,
-    "transports": "websocket",
-}
-request = requests.request("GET", f"https://sockets.streamlabs.com", params=params)
-print(request)
-
-sio = socketio.Client()
-
-
-@sio.on('connect')
-def on_connect():
-    print('connection established')
-
-
-@sio.on('my message')
-def on_message(data):
-    print('message received with ', data)
-    sio.emit('my response', {
-        "token": socket_token,
-        "transports": "websocket",
-    })
-
-
-@sio.on('disconnect')
-def on_disconnect():
-    print('disconnected from server')
-
-
-sio.connect("http://sockets.streamlabs.com")
-sio.wait()
+from selenium import webdriver
+import cv2
+import numpy as np
+import time
+URL = "https://streamlabs.com/alert-box/v3/FCA342A8953B82476CF1"
+DRIVER = 'chromedriver'
+driver = webdriver.Chrome(DRIVER)
+config = {i.split(":")[0]: i.split(":")[1][:-1] for i in open("config").readlines()}
+"""while True:
+    #driver.get(f"https://streamlabs.com/alert-box/v3/{config['access_token']}")
+    driver.get(URL)
+    driver.save_screenshot("screen_shot.png")
+    img = cv2.imread("screen_shot.png", 0)
+    cv2.imshow("Alert", img)
+    cv2.imshow("Alert Box", np.array(img))
+    if cv2.waitKey(0) & 0xFF == ord('q'):
+        break"""
+#driver.get(f"https://streamlabs.com/alert-box/v3/{config['access_token']}")
+driver.get(URL)
+time.sleep(7)
+driver.save_screenshot("screen_shot.png")
