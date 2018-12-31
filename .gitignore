@@ -3,3 +3,5 @@ access_token
 socket_token
 venv/
 test.html
+config
+test.py
