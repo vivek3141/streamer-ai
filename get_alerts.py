@@ -8,8 +8,9 @@ import time
 import random
 import pyttsx3
 
-config = {i.split(":")[0]: i.split(":")[1][:-1] for i in open("config").readlines()}
-URL = f"https://streamlabs.com/alert-box/v3/{config['access_token']}"
+#config = {i.split(":")[0]: i.split(":")[1][:-1] for i in open("config").readlines()}
+#URL = f"https://streamlabs.com/alert-box/v3/{config['access_token']}"
+URL = "https://streamlabs.com/alert-box/v3/2455D9407A647607A464"
 DRIVER = 'chromedriver'
 driver = webdriver.Chrome(DRIVER)
 driver.get(URL)
