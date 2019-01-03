@@ -5,3 +5,5 @@ venv/
 test.html
 config
 test.py
+client_secret.json
+access_token.json
