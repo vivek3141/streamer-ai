@@ -1,4 +1,3 @@
+python-socketio
 requests
-selenium
-pillow
-pytesseract
+neat-python
