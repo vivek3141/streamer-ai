@@ -79,7 +79,29 @@ are bred and some mutations are introduced. `NEAT` introduces features like spec
 make a much more effective neuroevolution model. Neuroevolution is known to do better than standard
 reinforcement learning models.<br>
 #### How the commentary works
-Using a `socketio` client for python, we can ge
+Using a `socketio` client for python, we can establish a connection to `Streamlab's Socket API`.
+This API returns every alert in JSON format. We can decode these JSONs to return statements
+thanking the donator, subscriber, member, superchat donator, etc. <br>Example:
+```python
+import socketio
+
+URL = "http://example.com/socket-api" # Change this to whatever Socket API you are using
+sio = socketio.Client()
+
+@sio.on('connect')
+def connect():
+    # This function is called when the connection is established
+    print("Connected")
+    
+# The event in quotes depends on your API, check the documentation
+@sio.on("event")
+def event(data):
+    print(data)
+
+# Connect to the URL specified above
+sio.connect(URL)
+```
+
 
 
 
