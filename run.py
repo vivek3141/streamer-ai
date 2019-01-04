@@ -4,6 +4,7 @@ import neat
 import gym, ppaquette_gym_super_mario
 import pickle
 import gzip
+import src.visualize as visualize
 
 socket_token = json.load(open("configs/socket_token.json"))['socket_token']
 URL = f"https://sockets.streamlabs.com?token={socket_token}"
@@ -40,10 +41,6 @@ def fitness_func(genomes, config):
                         break
                     else:
                         old = info['distance']
-
-            # [print(str(i) + " : " + str(info[i]), end=" ") for i in info.keys()]
-            # print("\n******************************")
-
             genome.fitness = -1 if info['distance'] <= 40 else info['distance']
         env.close()
     except KeyboardInterrupt:
@@ -64,18 +61,17 @@ def event(data):
 sio.connect(URL)
 
 
-def main():
+def main(generations):
     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          "neat.config")
-    # p = neat.Population(config)
-    p = neat.Checkpointer.restore_checkpoint(self.file_name)
+    p = neat.Checkpointer.restore_checkpoint("checkpoints/neat-checkpoint-2492")
     p.add_reporter(neat.StdOutReporter(True))
     p.add_reporter(neat.Checkpointer(5))
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
     print("loaded checkpoint...")
-    winner = p.run(self._eval_genomes, n)
+    winner = p.run(fitness_func, generations)
     win = p.best_genome
     pickle.dump(winner, open('winner.pkl', 'wb'))
     pickle.dump(win, open('real_winner.pkl', 'wb'))
