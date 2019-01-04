@@ -1,3 +1,6 @@
 python-socketio
 requests
 neat-python
+pyttsx3
+gym
+ppaquette-gym-super-mario

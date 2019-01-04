@@ -14,14 +14,19 @@ def connect():
 
 @sio.on('event')
 def event(data):
-    alerts.append(data)
+    t = data['type']
+    response = ""
+    if t == 'donation':
+        response = f'Thanks for the {data["message"][0]["amount"]} dollars {data["message"][0]["name"]}! ' \
+            f'{data["message"][0]["name"]} says {data["message"][0]["message"][0:50]}'
+    if t == 'follow':
+        response = f'Thanks for subscribing {data["message"][0]["name"]}!'
+    if t == 'subscription':
+        response = f'Thanks for being a member {data["message"][0]["name"]}! Welcome to the team!'
+    if t == 'superchat':
+        response = f'Thanks for the {data["message"][0]["displayString"].replace("$", "").split(".")[0]} dollars ' \
+            f'{data["message"][0]["name"]}! {data["message"][0]["name"]} says {data["message"][0]["comment"][0:50]}'
+    return response
 
 
 sio.connect(URL)
-try:
-    while True:
-        if alerts != []:
-            print(alerts[0])
-            del alerts[0]
-except KeyboardInterrupt:
-    pass
