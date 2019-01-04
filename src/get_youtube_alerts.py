@@ -1,9 +1,10 @@
 import json
 import socketio
 
-socket_token = json.load(open("socket_token.json"))['socket_token']
+socket_token = json.load(open("configs/socket_token.json"))['socket_token']
 URL = f"https://sockets.streamlabs.com?token={socket_token}"
 sio = socketio.Client()
+alerts = []
 
 
 @sio.on('connect')
@@ -13,13 +14,14 @@ def connect():
 
 @sio.on('event')
 def event(data):
-    print('I received a message!')
-    print(data)
+    alerts.append(data)
 
 
 sio.connect(URL)
 try:
     while True:
-        pass
+        if alerts != []:
+            print(alerts[0])
+            del alerts[0]
 except KeyboardInterrupt:
     pass
