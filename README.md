@@ -32,17 +32,28 @@ curl --request POST \
   refresh_token: 'IXCGDha46Q4eHBKrijmAqUwScbsMSuBy9IopXp80'
 }
  ```
- * Authorize this `access_token` for the scope `socket.token`
+ * Authorize this `access_token` for the scope `socket.token` using `/authorize`. Example:
+ ```bash
+ curl --request GET \
+  --url 'https://streamlabs.com/api/v1.0/authorize?response_type=response_type&client_id=client_id&redirect_uri=redirect_uri&scope=socket.token'
+  ```
  * Use the `access_token` to get a `socket_token`. Call a `GET` request to `/socket/token`. Example:
-
 ```bash
  curl --request GET \
   --url 'https://streamlabs.com/api/v1.0/socket/token?access_token=access_token'
 ```
 You can also use python's `reqests` library instead of `curl`
 * Install with `pip install requests`
-* Example to get `access_token`:
+* Example to get `socket_token`:
 ```python
+import requests
 
+url = "https://streamlabs.com/api/v1.0/socket/token"
+
+querystring = {"access_token":"access_token"}
+
+response = requests.request("GET", url, params=querystring)
+
+print(response.text)
 ```
 
