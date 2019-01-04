@@ -6,6 +6,6 @@ test.html
 config
 get_token.py
 configs/
-checkpoints/
 said.mp3
 say.txt
+neat-*
