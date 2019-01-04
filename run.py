@@ -3,7 +3,6 @@ import socketio
 import neat
 import gym, ppaquette_gym_super_mario
 import pickle
-import gzip
 import src.visualize as visualize
 import random
 

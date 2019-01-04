@@ -1,9 +1,6 @@
 from gtts import gTTS
-import pyttsx3
-import time
 import os
 
-# engine = pyttsx3.init()
 while True:
     read = open("say.txt").read()
     if read == "":
