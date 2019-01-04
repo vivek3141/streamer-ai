@@ -12,4 +12,3 @@ while True:
     open("say.txt", "w").write(open("say.txt", "r").read().replace(read, ""))
     gTTS(to_say).save("said.mp3")
     os.system("mpg123 said.mp3")
-    time.sleep(0.3)

@@ -11,3 +11,5 @@ get_token.py
 socket_token.json
 configs/
 checkpoints/
+said.mp3
+say.txt

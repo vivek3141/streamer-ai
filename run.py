@@ -91,7 +91,7 @@ def main(generations):
     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
                          "neat.config")
-    p = neat.Checkpointer.restore_checkpoint("checkpoints/neat-checkpoint-2492")
+    p = neat.Checkpointer.restore_checkpoint("checkpoints/gen_2284")
     p.add_reporter(neat.StdOutReporter(True))
     p.add_reporter(neat.Checkpointer(5))
     stats = neat.StatisticsReporter()
