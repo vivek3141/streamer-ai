@@ -1,8 +1,3 @@
-<script src="//yihui.name/js/math-code.js"></script>
-<!-- Just one possible MathJax CDN below. You may use others. -->
-<script async
-  src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
 # Streamer-AI
 Python based AI that uses Recurrent Neural Networks, Neuroevolution and Streamlabs APIs to live stream games while commentating over them at the same time.
 
