@@ -10,3 +10,4 @@ access_token.json
 get_token.py
 socket_token.json
 configs/
+checkpoints/
