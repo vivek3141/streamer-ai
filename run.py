@@ -6,6 +6,7 @@ import ppaquette_gym_super_mario
 import pickle
 import src.visualize as visualize
 import random
+import argparse
 
 gym.logger.set_level(40)
 
@@ -125,4 +126,14 @@ def main(generations, config, checkpoint):
 
 
 if __name__ == "__main__":
-    main(1)
+    parser = argparse.ArgumentParser(description='Run the program')
+    parser.add_argument('--gen', metavar='generations', type=int, help='Number of Generations to run for', nargs='?',
+                        default=1)
+    parser.add_argument('--file', metavar='file_name', type=str,
+                        help='File name to continue training or to run the winner',
+                        nargs='?', default="checkpoints/neat-checkpoint-2492")
+    parser.add_argument('--config', metavar='config', type=str, help='Configuration File', default='neat.config',
+                        nargs='?')
+
+    args = parser.parse_args()
+    main(args.gen, args.config, args.file)

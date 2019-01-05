@@ -2,8 +2,19 @@
 Python based AI that uses Recurrent Neural Networks, Neuroevolution and Streamlabs APIs to live stream games while commentating over them at the same time.
 
 ## Running The program
-Run `say.py` first, then run `run.py`. `say.py` writes to two files - `said.mp3`, `say.txt` so 
-make sure nothing important is stored in those files.
+Usage:
+```bash
+python3 main.py --gen [generations] --file [file_name] \
+    --config [config]
+```
+#### --gen
+Specify the number of generations to run the evolution for
+#### --file
+File to load the checkpoint from. `checkpoints/` has saved checkpoints for generation
+`2492` and `2284`.
+#### --config
+Configuration file for NEAT. `neat.config` contains the one used to train.
+
 ## Requirements
 Install the requirements with
 ```bash

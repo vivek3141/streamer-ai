@@ -1,6 +1,7 @@
 from gtts import gTTS
 import os
 
+open("say.txt", "w").write("")
 while True:
     read = open("say.txt").read()
     if read == "":
