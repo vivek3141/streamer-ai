@@ -1,6 +1,9 @@
 # Streamer-AI
 Python based AI that uses Recurrent Neural Networks, Neuroevolution and Streamlabs APIs to live stream games while commentating over them at the same time.
 
+## Running The program
+Run `say.py` first, then run `run.py`. `say.py` writes to two files - `said.mp3`, `say.txt` so 
+make sure nothing important is stored in those files.
 ## Requirements
 Install the requirements with
 ```bash

@@ -102,12 +102,12 @@ def event(data):
 sio.connect(URL)
 
 
-def main(generations):
+def main(generations, config, checkpoint):
     config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
                          neat.DefaultSpeciesSet, neat.DefaultStagnation,
-                         "neat.config")
+                         config)
 
-    p = neat.Checkpointer.restore_checkpoint("checkpoints/gen_2284")
+    p = neat.Checkpointer.restore_checkpoint(checkpoint)
 
     p.add_reporter(neat.StdOutReporter(True))
     p.add_reporter(neat.Checkpointer(5))
