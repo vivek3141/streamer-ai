@@ -4,7 +4,7 @@ import neat
 import gym
 import ppaquette_gym_super_mario
 import pickle
-import src.visualize as visualize
+import visualize as visualize
 import random
 import argparse
 
