@@ -9,6 +9,7 @@ import random
 import argparse
 
 from constants import *
+from get_sentences import *
 
 gym.logger.set_level(40)
 
@@ -51,9 +52,7 @@ def fitness_func(genomes, config):
             env.close()
 
             with open("say.txt", "a+") as f:
-                to_write = [f"Hey that was a decent run with a score of {genome.fitness}. ",
-                            f"That run had a score of {genome.fitness}. "][
-                    random.randint(0, 1)] if genome.fitness > 1000 else ""
+                to_write = say(info)
 
                 if alerts != []:
                     index = max(5, len(alerts))
@@ -76,18 +75,16 @@ def event(data):
     t = data['type']
     response = ""
     if t == 'donation':
-        response = f'Thanks for the {data["message"][0]["amount"]} dollars {data["message"][0]["name"]}! ' \
-            f'{data["message"][0]["name"]} says {data["message"][0]["message"][0:50]}'
+        response = donation(data)
 
     if t == 'follow':
-        response = f'Thanks for subscribing {data["message"][0]["name"]}!'
+        response = follow(data)
 
     if t == 'subscription':
-        response = f'Thanks for being a member {data["message"][0]["name"]}! Welcome to the team!'
+        response = subscription(data)
 
     if t == 'superchat':
-        response = f'Thanks for the {data["message"][0]["displayString"].replace("$", "").split(".")[0]} dollars ' \
-            f'{data["message"][0]["name"]}! {data["message"][0]["name"]} says {data["message"][0]["comment"][0:50]}'
+        response = superchat(data)
 
     alerts.append(response)
 
