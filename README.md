@@ -101,6 +101,17 @@ def event(data):
 # Connect to the URL specified above
 sio.connect(URL)
 ```
+(Insert Part Where I talk about the RNN)<br>
+#### Playing the audio
+The audio is converted to speech using `gtts`, Google's text-to-speech converter.
+This is far more superior than `pyttsx`, which bugs out quite a bit.<br>
+The audio is then played using `mpg123`, called by `os.system`.
+
+## Future Work
+* Integrate the streaming directly into the program, preventing the need for OBS.
+* Prevent the game reopening after each genome.
+* Improve commentary in general.
+
 
 
 
