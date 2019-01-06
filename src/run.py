@@ -51,8 +51,15 @@ def fitness_func(genomes, config):
                             old = info['distance']
                 fitness += info['distance']
                 if info['distance'] >= DISTANCES[level]:
-
+                    if level == len(LEVELS):
+                        break
+                    level += 1
+                    env.close()
                     env = gym.make(f'ppaquette/SuperMarioBros-{LEVELS[level]}-Tiles-v0')
+                    env.reset()
+                    state, reward, done, info = env.step([0 for i in range(6)])
+                else:
+                    break
 
             genome.fitness = fitness
             env.close()
