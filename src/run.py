@@ -25,7 +25,8 @@ def fitness_func(genomes, config):
         idx, genomes = zip(*genomes)
 
         for genome in genomes:
-            env = gym.make('ppaquette/meta-SuperMarioBros-Tiles-v0')
+            level = 0
+            env = gym.make(f'ppaquette/SuperMarioBros-{LEVELS[level]}-Tiles-v0')
 
             state = env.reset()
             net = neat.nn.FeedForwardNetwork.create(genome, config)
@@ -33,22 +34,27 @@ def fitness_func(genomes, config):
             done = False
             i = 0
             old = 40
+            fitness = 0
+            while True:
+                while not done:
+                    state = state.flatten()
+                    output = net.activate(state)
+                    output = get_actions(output)
 
-            while not done:
-                state = state.flatten()
-                output = net.activate(state)
-                output = get_actions(output)
+                    state, reward, done, info = env.step(output)
 
-                state, reward, done, info = env.step(output)
+                    i += 1
+                    if i % 50 == 0:
+                        if old == info['distance']:
+                            break
+                        else:
+                            old = info['distance']
+                fitness += info['distance']
+                if info['distance'] >= DISTANCES[level]:
 
-                i += 1
-                if i % 50 == 0:
-                    if old == info['distance']:
-                        break
-                    else:
-                        old = info['distance']
+                    env = gym.make(f'ppaquette/SuperMarioBros-{LEVELS[level]}-Tiles-v0')
 
-            genome.fitness = -1 if info['distance'] <= 40 else info['distance']
+            genome.fitness = fitness
             env.close()
 
             with open("say.txt", "a+") as f:

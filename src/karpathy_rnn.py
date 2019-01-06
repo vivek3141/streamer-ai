@@ -9,8 +9,7 @@ from random import uniform
 data = open('input.txt', 'r').read()  # should be simple plain text file
 chars = list(set(data))
 data_size, vocab_size = len(data), len(chars)
-print
-'data has %d characters, %d unique.' % (data_size, vocab_size)
+print('data has %d characters, %d unique.' % (data_size, vocab_size))
 char_to_ix = {ch: i for i, ch in enumerate(chars)}
 ix_to_char = {i: ch for i, ch in enumerate(chars)}
 
@@ -25,33 +24,6 @@ Whh = np.random.randn(hidden_size, hidden_size) * 0.01  # hidden to hidden
 Why = np.random.randn(vocab_size, hidden_size) * 0.01  # hidden to output
 bh = np.zeros((hidden_size, 1))  # hidden bias
 by = np.zeros((vocab_size, 1))  # output bias
-
-
-def gradCheck(inputs, target, hprev):
-    global Wxh, Whh, Why, bh, by
-    num_checks, delta = 10, 1e-5
-    _, dWxh, dWhh, dWhy, dbh, dby, _ = lossFun(inputs, targets, hprev)
-    for param, dparam, name in zip([Wxh, Whh, Why, bh, by], [dWxh, dWhh, dWhy, dbh, dby],
-                                   ['Wxh', 'Whh', 'Why', 'bh', 'by']):
-        s0 = dparam.shape
-        s1 = param.shape
-        assert s0 == s1, 'Error dims dont match: %s and %s.' % (repr(s0), repr(s1))
-        print(name)
-        for i in range(num_checks):
-            ri = int(uniform(0, param.size))
-            # evaluate cost at [x + delta] and [x - delta]
-            old_val = param.flat[ri]
-            param.flat[ri] = old_val + delta
-            cg0, _, _, _, _, _, _ = lossFun(inputs, targets, hprev)
-            param.flat[ri] = old_val - delta
-            cg1, _, _, _, _, _, _ = lossFun(inputs, targets, hprev)
-            param.flat[ri] = old_val  # reset old value for this parameter
-            # fetch both numerical and analytic gradient
-            grad_analytic = dparam.flat[ri]
-            grad_numerical = (cg0 - cg1) / (2 * delta)
-            rel_error = abs(grad_analytic - grad_numerical) / abs(grad_numerical + grad_analytic)
-            print('%f, %f => %e ' % (grad_numerical, grad_analytic, rel_error))
-            # rel_error should be on order of 1e-7 or less
 
 
 def lossFun(inputs, targets, hprev):
@@ -109,6 +81,33 @@ def sample(h, seed_ix, n):
         x[ix] = 1
         ixes.append(ix)
     return ixes
+
+
+def gradCheck(inputs, target, hprev):
+    global Wxh, Whh, Why, bh, by
+    num_checks, delta = 10, 1e-5
+    _, dWxh, dWhh, dWhy, dbh, dby, _ = lossFun(inputs, targets, hprev)
+    for param, dparam, name in zip([Wxh, Whh, Why, bh, by], [dWxh, dWhh, dWhy, dbh, dby],
+                                   ['Wxh', 'Whh', 'Why', 'bh', 'by']):
+        s0 = dparam.shape
+        s1 = param.shape
+        assert s0 == s1, 'Error dims dont match: %s and %s.' % (repr(s0), repr(s1))
+        print(name)
+        for i in range(num_checks):
+            ri = int(uniform(0, param.size))
+            # evaluate cost at [x + delta] and [x - delta]
+            old_val = param.flat[ri]
+            param.flat[ri] = old_val + delta
+            cg0, _, _, _, _, _, _ = lossFun(inputs, targets, hprev)
+            param.flat[ri] = old_val - delta
+            cg1, _, _, _, _, _, _ = lossFun(inputs, targets, hprev)
+            param.flat[ri] = old_val  # reset old value for this parameter
+            # fetch both numerical and analytic gradient
+            grad_analytic = dparam.flat[ri]
+            grad_numerical = (cg0 - cg1) / (2 * delta)
+            rel_error = abs(grad_analytic - grad_numerical) / abs(grad_numerical + grad_analytic)
+            print('%f, %f => %e ' % (grad_numerical, grad_analytic, rel_error))
+            # rel_error should be on order of 1e-7 or less
 
 
 n, p = 0, 0

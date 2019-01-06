@@ -1,0 +1,2 @@
+That run had a score of 100, which is not very good, so hopefully we can perform better in the upcoming genomes.
+100 might not be that great of a score, and there is a lot more room for improvement.
