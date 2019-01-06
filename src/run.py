@@ -71,7 +71,7 @@ def fitness_func(genomes, config):
             with open("say.txt", "a+") as f:
                 to_write = say(info, level)
 
-                if not alerts:
+                if alerts != []:
                     index = max(5, len(alerts))
                     f.write(". ".join(alerts[0:index]))
                     del alerts[0:index]

@@ -1,7 +1,7 @@
 import json
 import socketio
 
-socket_token = json.load(open("configs/socket_token.json"))['socket_token']
+socket_token = json.load(open("../configs/socket_token.json"))['socket_token']
 URL = f"https://sockets.streamlabs.com?token={socket_token}"
 sio = socketio.Client()
 alerts = []
@@ -26,7 +26,7 @@ def event(data):
     if t == 'superchat':
         response = f'Thanks for the {data["message"][0]["displayString"].replace("$", "").split(".")[0]} dollars ' \
             f'{data["message"][0]["name"]}! {data["message"][0]["name"]} says {data["message"][0]["comment"][0:50]}'
-    return response
+    print(response)
 
 
 sio.connect(URL)
