@@ -10,6 +10,9 @@ parser.add_argument('--config', metavar='config', type=str, help='NEAT Configura
 
 args = parser.parse_args()
 
+if not os.path.isfile("config"):
+    raise Exception("Config file not found!")
+
 os.system(f"python3 src/say.py & python3 src/run.py --gen {args.gen} --file {args.file} --config {args.config}")
 
 
