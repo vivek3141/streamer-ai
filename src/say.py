@@ -1,8 +1,13 @@
 from gtts import gTTS
 import os
-import pyttsx3
+from time import sleep
+import os
+import pyglet
 
-engine = pyttsx3.init()
+tts = gTTS(text='Hello World', lang='en')
+filename = '/tmp/temp.mp3'
+
+
 open("say.txt", "w").write("")
 while True:
     with open("say.txt") as f:
@@ -13,7 +18,14 @@ while True:
     with open("say.txt", "w") as f:
         with open("say.txt", "r") as file:
             f.write(file.read().replace(read, ""))
-    # gTTS(to_say).save("said.mp3")
-    # os.system("mpg123 said.mp3")
-    engine.say(to_say)
-    engine.runAndWait()
+    tts = gTTS(to_say)
+    tts.save(filename)
+
+    #music = pyglet.media.load(filename, streaming=False)
+    #music.play()
+
+    #sleep(music.duration)
+    #os.remove(filename)
+    os.system(f"mpg123 {filename}")
+    #engine.say(to_say)
+    #engine.runAndWait()
