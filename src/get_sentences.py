@@ -28,6 +28,7 @@ def superchat(data):
 def say(info, level):
     distance = info['distance']
     level_name = LEVELS[level]
+    max_distance = DISTANCES[level_name]
     low = [
         f"That run wasn't the best run, with an underwhelming score of {distance}.",
         f"Hopefully, we can do better next time.",
@@ -56,3 +57,5 @@ def say(info, level):
         f"{level_name} just flew by! Let's finish the other ones.",
         f"This is the run, I'm telling you! {level_name} is just too easy",
     ]
+    if distance <= 0.3 * max_distance:
+        pass
