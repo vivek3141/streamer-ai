@@ -22,6 +22,7 @@ config = neat.Config(neat.DefaultGenome, neat.DefaultReproduction,
 genome = pickle.load(open("finisher.pkl", 'rb'))
 net = neat.nn.FeedForwardNetwork.create(genome, config)
 info = {'distance': 0}
+
 try:
     level = 0
     env = gym.make(f'ppaquette/SuperMarioBros-{LEVELS[level]}-Tiles-v0')

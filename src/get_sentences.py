@@ -25,8 +25,18 @@ def superchat(data):
 
 
 def say(info):
-
-    to_write = [f"Hey that was a decent run with a score of {info['distance']}. ",
-                f"That run had a score of {info['distance']}. "][
-        random.randint(0, 1)] if info['distance'] > 1000 else ""
+    distance = info['distance']
+    low = [
+        f"That run was'n t the best run, with an underwhelming score of {distance}.",
+        f"Hopefully, we can do better next time.",
+        f"A score of {distance} is not the best.",
+        f"That genome got a bad score of {distance}.",
+        f"That one underperformed with a score of {distance}.",
+        f"Well, hopefully the other genomes can beat {distance}.",
+        f"{distance} is'nt the best score we can achieve.",
+        f""
+    ]
+    to_write = [f"Hey that was a decent run with a score of {distance}. ",
+                f"That run had a score of {distance}. "][
+        random.randint(0, 1)] if distance > 1000 else ""
     return to_write
