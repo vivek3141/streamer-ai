@@ -7,6 +7,7 @@ Usage:
 python3 main.py --gen [generations] --file [file_name] \
     --config [config]
 ```
+This writes to a file called `say.txt`.
 #### --gen
 Specify the number of generations to run the evolution for
 #### --file
@@ -115,7 +116,8 @@ def event(data):
 # Connect to the URL specified above
 sio.connect(URL)
 ```
-(Insert Part Where I talk about the RNN)<br>
+The rest of the audio uses random number generations to generate the sentences. A sentence is picked from a list of sentences, 
+stored in `get_sentences.py`. <br>
 #### Playing the audio
 The audio is converted to speech using `gtts`, Google's text-to-speech converter.
 This is far more superior than `pyttsx`, which bugs out quite a bit.<br>
