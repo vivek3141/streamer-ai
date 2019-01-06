@@ -1,5 +1,6 @@
 import json
 import random
+from constants import *
 
 
 def donation(data):
@@ -24,19 +25,34 @@ def superchat(data):
     return response
 
 
-def say(info):
+def say(info, level):
     distance = info['distance']
+    level_name = LEVELS[level]
     low = [
-        f"That run was'n t the best run, with an underwhelming score of {distance}.",
+        f"That run wasn't the best run, with an underwhelming score of {distance}.",
         f"Hopefully, we can do better next time.",
         f"A score of {distance} is not the best.",
         f"That genome got a bad score of {distance}.",
         f"That one underperformed with a score of {distance}.",
         f"Well, hopefully the other genomes can beat {distance}.",
-        f"{distance} is'nt the best score we can achieve.",
-        f""
+        f"{distance} isn't the best score we can achieve.",
+        f"Maybe we can beat {distance} next time",
     ]
-    to_write = [f"Hey that was a decent run with a score of {distance}. ",
-                f"That run had a score of {distance}. "][
-        random.randint(0, 1)] if distance > 1000 else ""
-    return to_write
+    high = [
+        f"Oh wow, that run had a decent score of {distance}",
+        f"That run had a great score of {distance}",
+        f"Hopefully, we can keep up this score of {distance}",
+        f"That run was pretty good, with a score of {distance}",
+        f"Wow, we are killing it with a score of {distance}",
+        f"So far we are doing pretty good with that score of {distance}",
+        f"That one was great with a score of {distance}",
+        f"Maybe we can keep a score of {distance} up",
+        f"That was a decent run with a score of {distance}",
+        f"That run had a score of {distance}"
+    ]
+    extreme = [
+        f"Oh wow! This run is fantastic, we are doing great by going with a score of {distance}",
+        f"Wow we just completed {level_name} with a distance of {distance}",
+        f"{level_name} just flew by! Let's finish the other ones.",
+        f"This is the run, I'm telling you! {level_name} is just too easy",
+    ]
