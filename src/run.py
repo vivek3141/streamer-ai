@@ -35,6 +35,7 @@ def fitness_func(genomes, config):
             i = 0
             old = 40
             fitness = 0
+
             while True:
                 while not done:
                     state = state.flatten()
@@ -49,7 +50,9 @@ def fitness_func(genomes, config):
                             break
                         else:
                             old = info['distance']
+
                 fitness += info['distance']
+
                 if info['distance'] >= DISTANCES[level]:
                     if level == len(LEVELS):
                         break
@@ -58,6 +61,7 @@ def fitness_func(genomes, config):
                     env = gym.make(f'ppaquette/SuperMarioBros-{LEVELS[level]}-Tiles-v0')
                     env.reset()
                     state, reward, done, info = env.step([0 for i in range(6)])
+
                 else:
                     break
 
@@ -73,6 +77,7 @@ def fitness_func(genomes, config):
                     del alerts[0:index]
 
                 f.write(to_write)
+
     except KeyboardInterrupt:
         env.close()
         exit()
