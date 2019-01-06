@@ -59,3 +59,7 @@ def say(info, level):
     ]
     if distance <= 0.3 * max_distance:
         pass
+    elif max_distance > distance >= 0.7 * max_distance:
+        pass
+    if distance >= max_distance:
+        pass
