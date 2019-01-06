@@ -53,7 +53,7 @@ def fitness_func(genomes, config):
 
                 fitness += info['distance']
 
-                if info['distance'] >= DISTANCES[level]:
+                if info['distance'] >= DISTANCE[level]:
                     if level == len(LEVELS):
                         break
                     level += 1
@@ -69,7 +69,7 @@ def fitness_func(genomes, config):
             env.close()
 
             with open("say.txt", "a+") as f:
-                to_write = say(info)
+                to_write = say(info, level)
 
                 if not alerts:
                     index = max(5, len(alerts))
