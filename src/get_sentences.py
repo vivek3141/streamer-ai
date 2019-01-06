@@ -26,10 +26,10 @@ def superchat(data):
 
 
 def say(info, level):
-
     distance = info['distance']
     level_name = LEVELS[level]
     max_distance = DISTANCES[level_name]
+    response = ""
 
     low = [
         f"That run wasn't the best run, with an underwhelming score of {distance}.",
@@ -63,10 +63,14 @@ def say(info, level):
     ]
 
     if distance <= 0.3 * max_distance:
-        pass
+        if random.randint(1, 3) == 1:
+            return low[random.randint(0, len(low) - 1)]
 
     elif max_distance > distance >= 0.7 * max_distance:
-        pass
+        if random.randint(1, 2) == 1:
+            return high[random.randint(0, len(high) - 1)]
 
     if distance >= max_distance:
-        pass
+        return extreme[random.randint(0, len(extreme) - 1)]
+
+    return response
