@@ -29,7 +29,6 @@ def say(info, level):
     distance = info['distance']
     level_name = LEVELS[level]
     max_distance = DISTANCES[level_name]
-    response = ""
 
     low = [
         f"That run wasn't the best run, with an underwhelming score of {distance}.",
@@ -73,4 +72,4 @@ def say(info, level):
     if distance >= max_distance:
         return extreme[random.randint(0, len(extreme) - 1)]
 
-    return response
+    return ""
