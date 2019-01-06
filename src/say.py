@@ -1,12 +1,9 @@
 from gtts import gTTS
 import os
 
-
-tts = gTTS(text='Hello World', lang='en')
 filename = '/tmp/temp.mp3'
-
-
 open("say.txt", "w").write("")
+
 while True:
     with open("say.txt") as f:
         read = f.read()
