@@ -1,5 +1,5 @@
 # Streamer-AI
-Python based AI that uses Recurrent Neural Networks, Neuroevolution and Streamlabs APIs to live stream games while commentating over them at the same time.
+Python based AI that uses Deep Neural Networks, Neuroevolution and Streamlabs APIs to live stream games while commentating over them at the same time.
 
 ## Running The program
 Usage:

@@ -56,6 +56,7 @@ def fitness_func(genomes, config):
                 if info['distance'] >= DISTANCE[level]:
                     if level == len(LEVELS):
                         break
+
                     level += 1
                     env.close()
                     env = gym.make(f'ppaquette/SuperMarioBros-{LEVELS[level]}-Tiles-v0')
