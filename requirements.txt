@@ -5,3 +5,6 @@ gtts
 gym
 ppaquette-gym-super-mario
 argparse
+numpy
+matplotlib
+graphviz
