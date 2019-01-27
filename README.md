@@ -127,8 +127,3 @@ The audio is then played using `mpg123`, called by `os.system`.
 * Integrate the streaming directly into the program, preventing the need for OBS.
 * Prevent the game reopening after each genome.
 * Improve commentary in general.
-
-
-
-
-
