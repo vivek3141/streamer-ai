@@ -11,11 +11,14 @@ import argparse
 from constants import *
 from get_sentences import *
 
+# disable gym warnings
 gym.logger.set_level(40)
 
+# Create socket client
 sio = socketio.Client()
 
 
+# Function to get actions from neural network output vector
 def get_actions(a):
     return ACTIONS[a.index(max(a))]
 
@@ -25,11 +28,11 @@ def fitness_func(genomes, config):
         idx, genomes = zip(*genomes)
 
         for genome in genomes:
-            level = 0
+            level = 0  # Counter for which level mario is on
             env = gym.make(f'ppaquette/SuperMarioBros-{LEVELS[level]}-Tiles-v0')
 
             state = env.reset()
-            net = neat.nn.FeedForwardNetwork.create(genome, config)
+            net = neat.nn.FeedForwardNetwork.create(genome, config)  # Creates nn
 
             done = False
             i = 0
@@ -54,9 +57,10 @@ def fitness_func(genomes, config):
                 fitness += info['distance']
 
                 if info['distance'] >= DISTANCE[level]:
-                    if level == len(LEVELS):
+                    if level == len(LEVELS):  # If it's the last level
                         break
 
+                    # Go to the next level, and remake the environment
                     level += 1
                     env.close()
                     env = gym.make(f'ppaquette/SuperMarioBros-{LEVELS[level]}-Tiles-v0')
