@@ -7,6 +7,7 @@ import pickle
 import visualize as visualize
 import random
 import argparse
+import asyncio
 
 from bad_words import *
 from constants import *
@@ -112,9 +113,11 @@ def event(data):
     print(response)
     alerts.append(response)
 
+
 @sio.on("disconnect")
 def disconnect():
     sio.connect(URL)
+
 
 sio.connect(URL)
 
