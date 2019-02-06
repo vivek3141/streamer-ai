@@ -64,9 +64,8 @@ def say(info, level):
         if random.randint(1, 2) == 1:
             return low[random.randint(0, len(low) - 1)]
 
-    elif max_distance > distance >= 0.7 * max_distance:
-        if random.randint(1, 2) == 1:
-            return high[random.randint(0, len(high) - 1)]
+    if max_distance > distance >= 0.7 * max_distance:
+        return high[random.randint(0, len(high) - 1)]
 
     if distance >= max_distance:
         return extreme[random.randint(0, len(extreme) - 1)]

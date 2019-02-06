@@ -8,6 +8,7 @@ import visualize as visualize
 import random
 import argparse
 
+from bad_words import *
 from constants import *
 from get_sentences import *
 
@@ -108,9 +109,14 @@ def event(data):
 
     if t == 'superchat':
         response = superchat(data)
-
+    for i in bad_words:
+        response = response.replace(i, "")
+    print(response)
     alerts.append(response)
 
+@sio.on("disconnect")
+def disconnect():
+    sio.connect(URL)
 
 sio.connect(URL)
 
